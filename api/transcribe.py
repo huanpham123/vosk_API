@@ -2,7 +2,7 @@ import os, wave, json
 from vosk import Model, KaldiRecognizer
 
 # path đến folder vosk-model-small-vn-0.4
-MODEL_DIR = os.path.join(os.path.dirname(__file__), "vosk-model-small-vn-0.4")
+MODEL_DIR = os.path.join(os.path.dirname(__file__), "..", "vosk-model-small-vn-0.4")
 if not os.path.isdir(MODEL_DIR):
     raise RuntimeError(f"Model not found at {MODEL_DIR}")
 
