@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>STT Vosk Việt – Demo</title>
+  <style>
+    body { font-family: sans-serif; max-width:600px; margin:2rem auto; }
+    textarea { width:100%; height:150px; }
+    button{ padding:0.5rem 1rem; }
+  </style>
+</head>
+<body>
+  <h1>Speech‑to‑Text (Tiếng Việt)</h1>
+  <p>Chọn file WAV mono 16 kHz 16‑bit và nhấn “Transcribe”:</p>
+  <input type="file" id="audio" accept=".wav"><br><br>
+  <button id="go">Transcribe</button>
+  <h2>Kết quả:</h2>
+  <textarea id="result" readonly></textarea>
+
+  <script>
+    document.getElementById('go').onclick = async () => {
+      const file = document.getElementById('audio').files[0];
+      if(!file){ alert('Chưa chọn file!'); return; }
+      const form = new FormData();
+      form.append('audio', file);
+      const res = await fetch('/api/transcribe', { method:'POST', body: form });
+      const j = await res.json();
+      if(j.error) alert(j.error);
+      else document.getElementById('result').value = j.text;
+    };
+  </script>
+</body>
+</html>
