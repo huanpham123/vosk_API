@@ -10,13 +10,6 @@
     {
       "src": "/api/(.*)",
       "dest": "api/transcribe.py"
-    },
-    {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/public/index.html"
     }
   ]
 }
